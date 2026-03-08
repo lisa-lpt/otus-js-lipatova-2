@@ -32,6 +32,7 @@ export function weatherApp(el) {
       el.innerHTML = `
       <h2>Погода в городе ${weatherInfo["name"]}</h2>
       <div class="card-slider">
+        <div class="card"> Погода: ${weatherInfo.weather[0].main}</div>
         <div class="card">Температура: ${weatherInfo["main"]["temp"]}</div>
         <div class="card">Ощущается как: ${weatherInfo["main"]["feels_like"]}</div>
         <div class="card">Давление: ${weatherInfo["main"]["pressure"]}</div>
@@ -109,6 +110,7 @@ export function weatherApp(el) {
         const itemCounter = el.querySelectorAll("li");
         if (itemCounter.length>10) {
           itemCounter[0].remove();
+          cityData.splice(0,1);
         }
       } else {
         inputElement.value = "";
