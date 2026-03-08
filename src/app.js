@@ -28,7 +28,7 @@ export function weatherApp(el) {
   const cityData = [];// array for local storage
   
   function showWeather(el, weatherInfo) {
-    if(weatherInfo["code"] !=="404" ) {
+    if(weatherInfo["cod"] !=="404" ) {
       el.innerHTML = `
       <h2>Погода в городе ${weatherInfo["name"]}</h2>
       <div class="card-slider">
@@ -106,7 +106,7 @@ export function weatherApp(el) {
         inputElement.value = "";
         
         // нельзя больше 10 параграфов
-        const itemCounter = el.querySelectorAll("p");
+        const itemCounter = el.querySelectorAll("li");
         if (itemCounter.length>10) {
           itemCounter[0].remove();
         }
