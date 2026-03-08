@@ -7,7 +7,8 @@ export default defineConfig([
    plugins: { js }, 
    extends: ["js/recommended"], 
    rules: {
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
     }, 
    languageOptions: { globals: globals.browser } },
    [globalIgnores(["coverage/*", "./*/*.test.js", "dist/*"])]
