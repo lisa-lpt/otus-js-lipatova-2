@@ -28,7 +28,7 @@ export function weatherApp(el) {
   const cityData = [];// array for local storage
   
   function showWeather(el, weatherInfo) {
-    if(weatherInfo["cod"] !=="404" ) {
+    if(weatherInfo["code"] !=="404" ) {
       el.innerHTML = `
       <h2>Погода в городе ${weatherInfo["name"]}</h2>
       <div class="card-slider">
