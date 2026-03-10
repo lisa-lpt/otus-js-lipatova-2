@@ -64,12 +64,18 @@ button {
 h2 {
   color: lightslategray;
 }
+
+.map-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 710px;
+}
 .card-slider {
     display: flex;
-    flex-direction: row wrap;
-    gap: 20px;
-    max-height: 400px;
-    max-width: 710px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-height: 300px;
     font-size: 20px;
     color: rgb(79, 95, 110);
 }

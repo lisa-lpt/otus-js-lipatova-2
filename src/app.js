@@ -14,7 +14,6 @@ export function weatherApp(el) {
         </div>
       </form>
       <div class="weather-info"></div>
-      <div class="img-container"></div>
       <ul class="local-storage">Ранее просмотренные города:</ul>
     </div>
   `;
@@ -26,17 +25,20 @@ export function weatherApp(el) {
   // const imgContainer = document.querySelector(".img-container");
   const localStore = document.querySelector(".local-storage");
   const cityData = [];// array for local storage
-  
+
   function showWeather(el, weatherInfo) {
     if(weatherInfo["cod"] !=="404" ) {
       el.innerHTML = `
       <h2>Погода в городе ${weatherInfo["name"]}</h2>
-      <div class="card-slider">
-        <div class="card"> Погода: ${weatherInfo.weather[0].main}</div>
-        <div class="card">Температура: ${weatherInfo["main"]["temp"]}</div>
-        <div class="card">Ощущается как: ${weatherInfo["main"]["feels_like"]}</div>
-        <div class="card">Давление: ${weatherInfo["main"]["pressure"]}</div>
-        <div class="card">Влажность: ${weatherInfo["main"]["humidity"]}</div>
+      <div class="map-container">
+        <div class="card-slider">
+          <div class="card"> Погода: ${weatherInfo.weather[0].main}</div>
+          <div class="card">Температура: ${weatherInfo["main"]["temp"]}</div>
+          <div class="card">Ощущается как: ${weatherInfo["main"]["feels_like"]}</div>
+          <div class="card">Давление: ${weatherInfo["main"]["pressure"]}</div>
+          <div class="card">Влажность: ${weatherInfo["main"]["humidity"]}</div>
+        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d577322.4387781183!2d37.38523765!3d55.5817222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54afc73d4b0c9%3A0x3d44d6cc5757cf4c!2z0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1773176674245!5m2!1sru!2sru" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     `;
     } else {
