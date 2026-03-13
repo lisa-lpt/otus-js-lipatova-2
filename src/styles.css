@@ -35,7 +35,7 @@ form  {
   padding: 20px;
 }
 
-#cityName {
+.city-name {
   width: 350px;
 }
 

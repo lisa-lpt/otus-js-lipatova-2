@@ -4,7 +4,7 @@ export function weatherApp(el) {
       <h1>Прогноз погоды</h1>
       <form>
         <input
-          id="cityName"
+          class="city-name"
           placeholder="Введите название города"
           autofocus
         />
@@ -27,7 +27,7 @@ export function weatherApp(el) {
   const mapImgEl = document.querySelector(".map");
   const geoBtn = document.querySelector(".geo-btn");
   const APP_ID = "97d93f1704dcb8e35dd2045c8e75710d";
-  const yandex_api ="5d3d4d78-9c36-47e2-ab56-ad47da89e018";
+  // const yandex_api ="5d3d4d78-9c36-47e2-ab56-ad47da89e018";
   const localStore = document.querySelector(".local-storage");
   const cityData = [];// array for local storage
 
@@ -64,42 +64,42 @@ export function weatherApp(el) {
     return await response.json();
   }
   //получаем город по геолокации
-  async function getCity() {
-    let response = await fetch(
-      `https://get.geojs.io/v1/ip/geo.json`
-    );
-    return await response.json();
-  }
+  // async function getCity() {
+  //   let response = await fetch(
+  //     `https://get.geojs.io/v1/ip/geo.json`
+  //   );
+  //   return await response.json();
+  // }
 
 
 
   // погода по геолокации
   geoBtn.addEventListener('click', async () => {
-    const cityObj = await getCity();
-    const cityName = cityObj.city;
-    const weatherInfo = await getWeather(cityName);
-    showWeather(weatherInfoEl, weatherInfo);
+    // const cityObj = await getCity();
+    // const cityName = cityObj.city;
+    // const weatherInfo = await getWeather(cityName);
+    // showWeather(weatherInfoEl, weatherInfo);
 
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(
-    //     async function(position) {
-    //       const latitude = position.coords.latitude;
-    //       const longitude = position.coords.longitude;
-    //       const response = await fetch(
-    //         `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${APP_ID}`
-    //       );
-    //       const positionInfo = await response.json();
-    //       let cityName = positionInfo[0].name;
-    //       const weatherInfo = await getWeather(cityName);
-    //       showWeather(weatherInfoEl, weatherInfo);
-    //     },
-    //     function(_error) {
-    //       weatherInfoEl.innerHTML = `<div class="error-message">Ошибка геолокации</div>`;
-    //     }
-    //   );
-    // } else {
-    //   weatherInfoEl.innerHTML = `<div class="error-message">Геолокация не поддерживается в этом браузере.</div>`;
-    // }
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async function(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+          const response = await fetch(
+            `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${APP_ID}`
+          );
+          const positionInfo = await response.json();
+          let cityName = positionInfo[0].name;
+          const weatherInfo = await getWeather(cityName);
+          showWeather(weatherInfoEl, weatherInfo);
+        },
+        function(_error) {
+          weatherInfoEl.innerHTML = `<div class="error-message">Ошибка геолокации</div>`;
+        }
+      );
+    } else {
+      weatherInfoEl.innerHTML = `<div class="error-message">Геолокация не поддерживается в этом браузере.</div>`;
+    }
   });
   
   // local storage
@@ -124,7 +124,8 @@ export function weatherApp(el) {
     const coordinate = await getCoords(cityName);
     let latitude = coordinate[0].lat;
     let longitude = coordinate[0].lon;
-    const mapImg = `https://static-maps.yandex.ru/v1?lang=ru_RU&ll=${longitude},${latitude}&z=10&size=450,450&maptype=map&apikey=${yandex_api}`;
+    // const mapImg = `https://static-maps.yandex.ru/v1?lang=ru_RU&ll=${longitude},${latitude}&z=10&size=450,450&maptype=map&apikey=${yandex_api}`;
+    const mapImg = `https://static-maps.yandex.ru/1.x/?ll=${longitude},${latitude}&size=450,450&z=10&l=map`;
     mapImgEl.src = `${mapImg}`;
 
 
