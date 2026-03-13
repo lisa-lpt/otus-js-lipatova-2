@@ -59,7 +59,7 @@ export function weatherApp(el) {
   // получения долготы и широты по названию города
   async function getCoords(cityName) {
     let response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${APP_ID}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${APP_ID}`
     );
     return await response.json();
   }
