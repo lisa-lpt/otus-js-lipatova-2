@@ -63,29 +63,43 @@ export function weatherApp(el) {
     );
     return await response.json();
   }
-  
+  //получаем город по геолокации
+  async function getCity() {
+    let response = await fetch(
+      `https://get.geojs.io/v1/ip/geo.json`
+    );
+    return await response.json();
+  }
+
+
+
   // погода по геолокации
   geoBtn.addEventListener('click', async () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async function(position) {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          const response = await fetch(
-            `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${APP_ID}`
-          );
-          const positionInfo = await response.json();
-          let cityName = positionInfo[0].name;
-          const weatherInfo = await getWeather(cityName);
-          showWeather(weatherInfoEl, weatherInfo);
-        },
-        function(_error) {
-          weatherInfoEl.innerHTML = `<div class="error-message">Ошибка геолокации</div>`;
-        }
-      );
-    } else {
-      weatherInfoEl.innerHTML = `<div class="error-message">Геолокация не поддерживается в этом браузере.</div>`;
-    }
+    const cityObj = await getCity();
+    const cityName = cityObj.city;
+    const weatherInfo = await getWeather(cityName);
+    showWeather(weatherInfoEl, weatherInfo);
+
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     async function(position) {
+    //       const latitude = position.coords.latitude;
+    //       const longitude = position.coords.longitude;
+    //       const response = await fetch(
+    //         `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${APP_ID}`
+    //       );
+    //       const positionInfo = await response.json();
+    //       let cityName = positionInfo[0].name;
+    //       const weatherInfo = await getWeather(cityName);
+    //       showWeather(weatherInfoEl, weatherInfo);
+    //     },
+    //     function(_error) {
+    //       weatherInfoEl.innerHTML = `<div class="error-message">Ошибка геолокации</div>`;
+    //     }
+    //   );
+    // } else {
+    //   weatherInfoEl.innerHTML = `<div class="error-message">Геолокация не поддерживается в этом браузере.</div>`;
+    // }
   });
   
   // local storage
