@@ -1,9 +1,14 @@
-import { appendCity, renderLayout, showErrorMessage, showWeather } from './render';
+import {
+  appendCity,
+  renderWeatherLayout,
+  showErrorMessage,
+  showWeather,
+} from './renderWeather';
 
 describe('render', () => {
   it('renderLayout', () => {
     const rootEl = document.body;
-    renderLayout(rootEl);
+    renderWeatherLayout(rootEl);
 
     const containerEl = rootEl.querySelector('.container');
 

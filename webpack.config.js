@@ -9,11 +9,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'main.js',
+    publicPath: '/',
   },
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
     },
+    historyApiFallback: true,
     port: 9000,
   },
   module: {
