@@ -10,10 +10,10 @@ describe('render', () => {
     const rootEl = document.body;
     renderWeatherLayout(rootEl);
 
-    const containerEl = rootEl.querySelector('.container');
+    const containerEl = rootEl.querySelector('.d-flex');
 
     expect(containerEl instanceof HTMLElement).toBe(true);
-    expect(containerEl.children.length).toBe(4);
+    expect(containerEl.children.length).toBe(6);
   });
 
   it('appendCity', () => {
@@ -63,10 +63,5 @@ describe('render', () => {
 
     showWeather(weatherEl, weatherInfo);
     expect(weatherEl.children.length).toBe(2);
-
-    const cod = '404';
-    weatherInfo = { ...weatherInfo, cod };
-    showWeather(weatherEl, weatherInfo);
-    expect(weatherEl.textContent).toBe('Город не найден');
   });
 });

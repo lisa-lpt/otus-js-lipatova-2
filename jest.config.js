@@ -5,6 +5,10 @@ const config = {
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
 
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}', // Include all files in src
+  ],
+
   coveragePathIgnorePatterns: ['./*/main.js'],
 
   // The directory where Jest should output its coverage files
