@@ -5,17 +5,19 @@ const config = {
   // Indicates whether the coverage information should be collected while executing the test
   collectCoverage: true,
 
-  coveragePathIgnorePatterns: [
-    "./*/main.js",
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}', // Include all files in src
   ],
 
+  coveragePathIgnorePatterns: ['./*/main.js'],
+
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // Indicates which provider should be used to instrument code for coverage
-  coverageProvider: "v8",
+  coverageProvider: 'v8',
 
-   coverageThreshold: {
+  coverageThreshold: {
     global: {
       branches: 60,
       functions: 60,
@@ -23,8 +25,8 @@ const config = {
       statements: 60,
     },
   },
-  
-  testEnvironment: "jsdom",
+
+  testEnvironment: 'jsdom',
 };
 
 module.exports = config;
