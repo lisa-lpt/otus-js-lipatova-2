@@ -2,9 +2,10 @@ import { renderCityPage } from '../pages/city.js';
 import { renderAboutPage } from '../pages/about.js';
 import { renderHomePage } from '../pages/home.js';
 import { render404Page } from '../pages/404.js';
+import { createCityRoute, getLocationPath } from '../utils/route.js';
 
 export const router = (parentEl) => {
-  const path = window.location.pathname;
+  const path = getLocationPath();
 
   if (path === '/') {
     return renderHomePage(parentEl);
@@ -21,9 +22,7 @@ export const router = (parentEl) => {
     }
 
     const setUrlCity = (city) => {
-      city = city.trim();
-      const route = city ? `/city/${encodeURIComponent(city)}` : '/city';
-      history.pushState(null, null, route);
+      history.pushState(null, null, createCityRoute(city));
     };
 
     return renderCityPage(parentEl, cityName, setUrlCity);
@@ -32,7 +31,7 @@ export const router = (parentEl) => {
   return render404Page(parentEl);
 };
 
-export const navigateTo = (url, el) => {
-  history.pushState(null, null, url);
+export const navigateTo = (fullRoute, el) => {
+  history.pushState(null, null, fullRoute);
   router(el);
 };

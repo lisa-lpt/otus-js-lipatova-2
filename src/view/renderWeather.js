@@ -1,3 +1,5 @@
+import { createCityRoute } from '../utils/route';
+
 export const renderWeatherLayout = (el) => {
   el.innerHTML = `
     <div class="d-flex flex-column gap-3 align-items-center">
@@ -31,7 +33,7 @@ export const appendCity = (parentEl, cityName, active) => {
   cityEl.textContent = cityName;
   cityEl.className = 'list-group-item list-group-item-action';
   if (active) cityEl.className += ' active';
-  cityEl.href = `/city/${encodeURIComponent(cityName)}`;
+  cityEl.href = createCityRoute(cityName);
   cityEl.dataset.link = true;
   parentEl.append(cityEl);
 };
