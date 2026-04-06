@@ -1,4 +1,5 @@
-import { weatherApp } from './app.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+import { app } from './app.js';
 
-weatherApp(document.body);
+app(document.body);
