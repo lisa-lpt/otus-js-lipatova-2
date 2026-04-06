@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      const BASE_PATH = '<%= BASE_PATH %>';
+
+      sessionStorage.redirect = location.pathname + location.search;
+      location.href = BASE_PATH + '/';
+    </script>
+  </head>
+  <body></body>
+</html>

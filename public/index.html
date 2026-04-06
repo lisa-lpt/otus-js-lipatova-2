@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Weather App</title>
+    <script>
+      (function () {
+        const redirect = sessionStorage.redirect;
+        if (redirect) {
+          history.replaceState(null, null, redirect);
+          sessionStorage.removeItem('redirect');
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

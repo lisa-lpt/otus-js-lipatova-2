@@ -1,5 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
+const repoName = process.env.REPO_NAME || '';
+const BASE_PATH = repoName ? `/${repoName}/` : '/';
 
 module.exports = {
   entry: {
@@ -9,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'main.js',
-    publicPath: '/',
+    publicPath: BASE_PATH,
   },
   devServer: {
     static: {
@@ -30,5 +34,24 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new webpack.DefinePlugin({
+      __BASE_PATH__: JSON.stringify(BASE_PATH),
+    }),
+
+    // index.html
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+
+    // 404.html
+    new HtmlWebpackPlugin({
+      template: './public/404.html',
+      filename: '404.html',
+      inject: false,
+      templateParameters: {
+        BASE_PATH,
+      },
+    }),
+  ],
 };
